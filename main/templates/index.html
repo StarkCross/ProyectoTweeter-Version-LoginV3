@@ -3,7 +3,23 @@
     <meta charset="utf-8"/>
     <title></title>
 </head>
-<body>
-    Entraste como  {{ user.username }}
+<body style="background:#CECEF6">
+	<div><marquee BGCOLOR="#A4A4A4" width=700 direction=left><a style="color:#8A0808">
+		Logueado Correctamente!!!!</a></marquee>
+<br>
+<a href="{% url home %}">Regresar</a></br>
+	</div><br>
+    Entraste como <a style="color:#B40404"> {{ user.username }}</a>
+</br>
     <a href="{% url django.contrib.auth.views.logout %}" > logout.... </a>
+
+	<h3><a href=" {% url show_follow user.pk %}">Ver Seguidores</a></h3>
+
+	<h3><a href=" {% url show_user user.pk %}">Ver Perfil</a></h3>
+
+	<h3><a href=" {% url edit_user %}">Editar Perfil</a></h3>
+
+	<h3><a href=" {% url add_tweet %}">Twitear</a></h3>
+
+</body>
 </html>

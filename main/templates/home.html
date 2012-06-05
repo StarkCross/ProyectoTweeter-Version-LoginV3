@@ -4,28 +4,26 @@
 </head>
 <body style="background:#CECEF6">
 	<div><marquee BGCOLOR="#A4A4A4" width=700 direction=left><a style="color:#8A0808">
-		Welcomeeeeee!!!!</a></marquee>
+		Tweeter!!!!</a></marquee>
 	</div>
+<a href="{% url index %}">Opciones</a>
 	<hr/>
 	{% for user in users %}
 	<div>
-		<h3><a style="color:#B40404">{{ user.nick_name }} - ({{ user.tweets.count }}) </a><a style="color:#0B0B3B">Tweets</a></h3>
+		<h3><a style="color:#B40404">{{ user.username }} </a><a style="color:#0B0B3B">Tweets</a></h3>
 		<a href="{% url show_user user.pk %}">See more</a>
+		<p>Name: <a style="color:#B40404"> {{ user.lala.first_name }}</a></p>
+		<a href="{{ MEDIA_URL }}{{ user.lala.image_owner }}"><img width=150 height=150 src="{{ MEDIA_URL }}{{ user.lala.image_owner }}"/></a>
 		<div><h4><a style="color:#B43104">email </a>- {{ user.email }}</h4></div>
 		<div class='tweets'>
-			{% for tweet in user.tweets.all %}
+			{% for tweet in user.lala.tweets.all %}
 			<div><a style="color:#0431B4">Tweets:</a> {{ tweet.status }}</div>
 			{% endfor %}
 		</div>
 	</div>
 	{% endfor %}
 	
-	{% for tweet in Tweets %}
-		<div>
-			<h3><a style="color:#B43104">The status is - {{ tweet.status }}</a></h3>
-		</div>
-	{% endfor %}
-</body>
+	</body>
 
 </html>
 

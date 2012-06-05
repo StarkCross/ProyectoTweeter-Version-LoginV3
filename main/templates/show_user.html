@@ -1,25 +1,58 @@
 <html>
 <head>
-	<title><h2><a style="color:#B40404">{{ user.nickname }} </a></h2>- <a style="color:#610B0B">My profile!!! </a></title>
-</head>
+		<title>{{ user.name }} - Usuarios</title>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}estilo.css">
+	</head>
+	
 <body style="background:#CECEF6">
-	<h3><a href="{% url home %}">+HOME+</a></h3>
-	<h1><a style="color:#B40404">{{ user.nick_name }} {{ tweets.user.count }}</a></h1>
+	<div><marquee BGCOLOR="#A4A4A4" width=700 direction=left><a style="color:#8A0808">
+		Welcomeeeeee!!!!</a></marquee>
+	</div>
+	
+	<a href="{% url index %}">Regresar</a>
+	<!--<h1>user: {{ users_owner.username }}</h1>
+	<h1>email: {{ user.email }}</h1>-->
+	<h3><a style="color:#0B0B3B">Nombre de Usuario:</a><a style="color:#B40404"> {{ users_owner.lala.first_name }} {{ users_owner.lala.last_name }}</a></h3>
 
-	<img src="{{ MEDIA_URL }}{{ user.image_owner }}"/>
 
+<form action="/following/" method="POST">
+		{% csrf_token %}
+		{% csrf_token %}		
+		<input type="hidden" name="pk" value="{{ users_owner.pk }}">
 
+<p>
+	<p>Usuario Logueado Como: {{ logueado.username }}</p>
+		{% if followin %}
+			<input type="submit" value="unFollow">
+		{% else %}
+			<input type="submit" value="Follow">
+		{% endif %}
+</p>
+</form>
 
-	<h3><p><a style="color:#8A0808">Email:</a></h3><h4>{{ user.email }}</p></h4>
-	<h3><p><a style="color:#8A0808">Cumpleaños:</a></h3><h4>{{ user.birth_date }}</p></h4>
-	<h3><p><a style="color:#8A0808">Ubicacion:</a></h3><h4>{{ user.place }}</p></h4>
-	<h3><p><a style="color:#8A0808">Lugar de nacimiento:</a></h3><h4>{{ user.place_birth }}</p></h4>
-	<h3><p><a style="color:#8A0808">Biografia:</a></h3><h4>{{ user.biography }}</p></h4>
-	<p>{% for tweet in user.tweets.all %}
-		<h4><a style="color:#0431B4">Tweets:</a></h4>
-		<div><a style="color:#A61E00"> Status: </a>{{ tweet.status }}</div>
+	<img src="{{ MEDIA_URL }}{{ users_owner.lala.image_owner }}"/>
+	<h3><a style="color:#0B0B3B">Fecha de Nacimiento:</a><a style="color:#B40404"> {{ users_owner.lala.birth_date }} </a></h3>
+	<h3><a style="color:#0B0B3B">Biografia:</a><a style="color:#B40404"> {{ users_owner.lala.biography }} </a></h3>
+	<h3><a style="color:#0B0B3B">Lugar de Nacimiento:</a><a style="color:#B40404"> {{ users_owner.lala.place_birth }}
+	<h3><a style="color:#0B0B3B">Correo Electronico:</a><a style="color:#B40404"> {{ users_owner.email }}  </a></h3>
+
+</a></h3>
+	<ul><a style="color:blue">Tweets:</a>
+	
+
+	{% for tweet in user.lala.tweets.all %}
+		<div><li>tweet ({{ tweet.pk }}) - <a style="color:#DF7401">status:</a><a style="color:#088A08">  {{ tweet.status }} </a> <br>Created_at :  {{tweet.created_at}} </li></div></br>
+		{% if user.get_profile == tweet.owner %}
+		<br><a href="{% url edit_tweet tweet.pk%}"> Editar Tweet :O </a></br>		
+		<a href="{% url delete_tweet tweet.pk%}"> Eliminar Tweet x.X </a>
+		{% endif %}
 		{% endfor %}
-	</p>
-</body>
+		</ol>
+		</p>
+		</li>
+		</ul>
 
+	
+		
+	</body>
 </html>

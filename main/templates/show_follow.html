@@ -1,19 +1,23 @@
 <html>
 <head>
-		<title>{{ user.name }} - Usuarios</title>
+		<title>{{ users_owner.username }} - Usuarios</title>
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}estilo.css">
 	</head>
-	<body>
-	<a href="{% url user %}">User</a>
-	<h1>{{ users_owner.first_name }} {{ users_owner.last_name }}</h1>
-	<p>Nick : {{ users_owner.nick_name }}</p>
+	
+<body style="background:#CECEF6">
+	<div><marquee BGCOLOR="#A4A4A4" width=700 direction=left><a style="color:#8A0808">
+		Welcomeeeeee!!!!</a></marquee>
+	</div>
+	
+	<a href="{% url index %}">Regresar</a>
+	<h3><a style="color:#0B0B3B">Nombre de Usuario:</a><a style="color:#B40404"> {{ users_owner.lala.first_name }} {{ users_owner.lala.last_name }} </a></h3>
 	<ul>
 	<li><h3>Followers:</h3>
-	<p>{% for follow in users_owner.following.all %}
-		<div><p>ID : {{ follow.pk }} - Follower {{ follow.first_name }}</p></div>
+	<p>{% for follow in users_owner.lala.follow.all %}
+		<div><p>ID : {{ follow.pk }} -<a style="color:#DF7401"> Follower:</a><a style="color:#0101DF"> {{ follow.first_name }}</a></p></div>
 		<ol>
 	{% for tweet in follow.tweets.all %}
-		<div><li>tweet ({{ tweet.pk }}) - status: {{ tweet.status }} <br/> Created_at : 		{{tweet.created_at}} </li><br/></div>
+		<div><li>tweet ({{ tweet.pk }}) - <a style="color:#DF7401">status:</a><a style="color:#088A08"> {{ tweet.status }} </a><br/> Created_at :  {{tweet.created_at}} </li><br/></div>
 		{% endfor %}
 		</ol>
 		<br/>
